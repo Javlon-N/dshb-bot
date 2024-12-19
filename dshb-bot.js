@@ -4,9 +4,8 @@ const fs = require("fs");
 const path = require("path");
 
 // File path for storing promotion dates
-const promotionFilePath = path.join(__dirname, "promotionDates.json");
 const PREFIX = "!";
-
+const promotionFilePath = path.join(__dirname, "promotionDates.json");
 // Load existing promotion dates from file
 let promotionDates = {};
 if (fs.existsSync(promotionFilePath)) {
@@ -23,6 +22,16 @@ if (fs.existsSync(promotionFilePath)) {
 } else {
   console.log("promotionDates.json not found, creating a new one.");
 }
+
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+});
+const TOKEN = process.env.TOKEN;
 
 // Function to save promotion dates to the file
 function savePromotionDates() {
@@ -62,14 +71,6 @@ const roleHierarchy = [
 ];
 
 // Create a new Discord client
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-  ],
-});
 
 // Utility Functions
 function getRoleIndex(roleId) {
