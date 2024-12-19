@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Client, Events, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
-const TOKEN = fs.readFileSync("TOKEN", "utf8").trim();
+client.login(process.env.TOKEN);
 // File path for storing promotion dates
 const promotionFilePath = path.join(__dirname, "promotionDates.json");
 const PREFIX = "!";
